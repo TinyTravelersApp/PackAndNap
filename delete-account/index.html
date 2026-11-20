@@ -26,6 +26,16 @@
     footer { text-align: center; padding: 32px 20px; color: #7f8c8d; font-size: .92rem; }
     @media (max-width: 600px) { section { padding: 20px; } nav.toc ol { columns: 1; } table, thead, tbody, tr, th, td { display: block; } thead { display: none; } td { border: none; padding: 4px 0; } tr { border-bottom: 1px solid #e6e8f0; padding: 8px 0; } td:first-child { font-weight: 600; } }
   </style>
+  <script type="module">
+    import { analytics } from 'https://esm.sh/@heycatch/sdk@0.8.5';
+
+    analytics.init({
+      projectKey: 'hck_pk_DRTEnEEVi38FMN9uh8GH2DL3IaYpGEsM',
+      install: { framework: 'web', agent: 'cursor' },
+      site: 'landing',
+      requestBatching: false,
+    });
+  </script>
 </head>
 <body>
   <header>

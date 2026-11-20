@@ -72,6 +72,16 @@
       margin: 15px 0;
     }
   </style>
+  <script type="module">
+    import { analytics } from 'https://esm.sh/@heycatch/sdk@0.8.5';
+
+    analytics.init({
+      projectKey: 'hck_pk_DRTEnEEVi38FMN9uh8GH2DL3IaYpGEsM',
+      install: { framework: 'web', agent: 'cursor' },
+      site: 'landing',
+      requestBatching: false,
+    });
+  </script>
 </head>
 <body>
   <header>
