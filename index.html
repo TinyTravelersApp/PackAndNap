@@ -189,6 +189,30 @@
       .store-buttons { flex-direction: column; }
       .store-btn { width: 100%; }
     }
+    .no-ads {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin: 10px 0 0;
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 999px;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+    .no-ads svg { width: 18px; height: 18px; flex: none; }
+    .hero-video {
+      display: block;
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      aspect-ratio: 9 / 16;
+      margin: 22px auto 0;
+      border-radius: 20px;
+      background: #e9e4ff;
+      box-shadow: 0 10px 28px rgba(44,24,96,0.35);
+    }
+    @media (min-width: 760px) {
+      .hero-video { max-width: 300px; }
+    }
     .screens { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 12px; margin: 0; list-style: none; -webkit-overflow-scrolling: touch; }
     .screens li { flex: 0 0 200px; scroll-snap-align: start; margin: 0; }
     .screens figure { margin: 0; }
@@ -249,9 +273,14 @@
         <a class="store-btn store-btn-android" href="https://play.google.com/store/apps/details?id=com.packandnap.app" onclick="if (typeof fbq === 'function') { fbq('trackCustom', 'StoreClick', {store: 'google_play'}); }">Get Pack &amp; Nap on Google Play</a>
       </div>
       <p class="store-subline">Packing lists and nap schedules for family trips.</p>
+      <p class="no-ads"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#fff"/><path d="M6.5 12.5l3.6 3.6 7.4-8" fill="none" stroke="#6c5ce7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>No ads in the app</p>
       <p class="store-alt store-alt-ios"><a href="https://play.google.com/store/apps/details?id=com.packandnap.app" onclick="if (typeof fbq === 'function') { fbq('trackCustom', 'StoreClick', {store: 'google_play'}); }">On Android? Get it on Google Play</a></p>
       <p class="store-alt store-alt-android"><a href="https://apps.apple.com/app/pack-nap/id6827359792" onclick="if (typeof fbq === 'function') { fbq('trackCustom', 'StoreClick', {store: 'app_store'}); }">On iPhone? Get it on the App Store</a></p>
     </div>
+    <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/walkthrough-poster.jpg" width="720" height="1280" aria-label="Short walkthrough of the Pack &amp; Nap app: your trip, a packing list for each kid, items checked off, and the nap schedule. No ads in the app.">
+      <source src="images/walkthrough-silent.mp4" type="video/mp4">
+    </video>
+    <script>if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { var hv = document.getElementById('hero-video'); hv.removeAttribute('autoplay'); hv.pause(); hv.setAttribute('controls', ''); }</script>
     <p class="intro">Pack &amp; Nap is an iPhone and Android app for parents traveling with kids: packing lists for each child, plus nap, meal and bedtime schedules.</p>
   </header>
 
