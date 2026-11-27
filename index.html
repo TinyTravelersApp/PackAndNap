@@ -127,9 +127,68 @@
       border-radius: 10px;
       margin: 15px 0;
     }
-    .store-buttons { margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .store-buttons a { background: white; color: #6c5ce7; font-weight: 600; padding: 12px 22px; border-radius: 12px; text-decoration: none; }
-    .store-buttons a:hover { text-decoration: none; opacity: 0.9; }
+    .store-cta {
+      margin: 24px auto 0;
+    }
+    .store-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: #6c5ce7;
+      font-weight: 700;
+      font-size: 1.05rem;
+      line-height: 1.25;
+      text-align: center;
+      min-height: 56px;
+      padding: 14px 22px;
+      border-radius: 12px;
+      text-decoration: none;
+    }
+    .store-btn:hover { text-decoration: none; opacity: 0.92; }
+    .store-btn:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
+    .store-subline {
+      margin: 12px 0 0;
+      font-size: 1rem;
+      opacity: 0.95;
+    }
+    .store-alt {
+      display: none;
+      margin: 10px 0 0;
+      font-size: 0.92rem;
+    }
+    .store-alt a {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .store-alt a:hover { opacity: 0.9; }
+    html[data-store-platform="ios"] .store-btn-android,
+    html[data-store-platform="android"] .store-btn-ios {
+      display: none;
+    }
+    html[data-store-platform="ios"] .store-alt-ios,
+    html[data-store-platform="android"] .store-alt-android {
+      display: block;
+    }
+    html[data-store-platform="ios"] .store-buttons,
+    html[data-store-platform="android"] .store-buttons {
+      display: block;
+    }
+    html[data-store-platform="ios"] .store-btn,
+    html[data-store-platform="android"] .store-btn {
+      width: 100%;
+    }
+    @media (max-width: 600px) {
+      header { padding: 36px 20px 28px; }
+      h1 { font-size: 2.2rem; }
+      .store-buttons { flex-direction: column; }
+      .store-btn { width: 100%; }
+    }
     .screens { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 12px; margin: 0; list-style: none; -webkit-overflow-scrolling: touch; }
     .screens li { flex: 0 0 200px; scroll-snap-align: start; margin: 0; }
     .screens figure { margin: 0; }
@@ -139,6 +198,19 @@
       .screens { display: grid; grid-template-columns: repeat(4, 1fr); overflow-x: visible; }
     }
   </style>
+  <script>
+  (function () {
+    var ua = navigator.userAgent || "";
+    var platform = "both";
+    var macWithTouch = /Mac/i.test(ua) && navigator.maxTouchPoints > 1;
+    if (/iPhone|iPad|iPod/i.test(ua) || macWithTouch) {
+      platform = "ios";
+    } else if (/Android/i.test(ua)) {
+      platform = "android";
+    }
+    document.documentElement.setAttribute("data-store-platform", platform);
+  })();
+  </script>
   <script type="module">
     import { analytics } from 'https://esm.sh/@heycatch/sdk@0.8.5';
 
@@ -171,11 +243,16 @@
   <header>
     <h1>Pack & Nap</h1>
     <div class="tagline">Pack smarter. Nap easier.</div>
-    <p class="intro">Pack &amp; Nap is an iPhone and Android app for parents traveling with kids: packing lists for each child, plus nap, meal and bedtime schedules.</p>
-    <div class="store-buttons">
-      <a href="https://apps.apple.com/app/pack-nap/id6827359792" onclick="if (typeof fbq === 'function') { fbq('trackCustom', 'StoreClick', {store: 'app_store'}); }">Download on the App Store</a>
-      <a href="https://play.google.com/store/apps/details?id=com.packandnap.app" onclick="if (typeof fbq === 'function') { fbq('trackCustom', 'StoreClick', {store: 'google_play'}); }">Get it on Google Play</a>
+    <div class="store-cta">
+      <div class="store-buttons">
+        <a class="store-btn store-btn-ios" href="https://apps.apple.com/app/pack-nap/id6827359792" onclick="if (typeof fbq === 'function') { fbq('trackCustom', 'StoreClick', {store: 'app_store'}); }">Get Pack &amp; Nap on the App Store</a>
+        <a class="store-btn store-btn-android" href="https://play.google.com/store/apps/details?id=com.packandnap.app" onclick="if (typeof fbq === 'function') { fbq('trackCustom', 'StoreClick', {store: 'google_play'}); }">Get Pack &amp; Nap on Google Play</a>
+      </div>
+      <p class="store-subline">Packing lists and nap schedules for family trips.</p>
+      <p class="store-alt store-alt-ios"><a href="https://play.google.com/store/apps/details?id=com.packandnap.app" onclick="if (typeof fbq === 'function') { fbq('trackCustom', 'StoreClick', {store: 'google_play'}); }">On Android? Get it on Google Play</a></p>
+      <p class="store-alt store-alt-android"><a href="https://apps.apple.com/app/pack-nap/id6827359792" onclick="if (typeof fbq === 'function') { fbq('trackCustom', 'StoreClick', {store: 'app_store'}); }">On iPhone? Get it on the App Store</a></p>
     </div>
+    <p class="intro">Pack &amp; Nap is an iPhone and Android app for parents traveling with kids: packing lists for each child, plus nap, meal and bedtime schedules.</p>
   </header>
 
   <div class="container">
